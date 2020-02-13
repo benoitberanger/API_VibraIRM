@@ -7,7 +7,11 @@ classdef FTDI_VIBRA_IRM < handle
     
     properties % attributs
         
-        FTD2XX_NET_dll_path = fullfile( fileparts(mfilename('fullpath')) ,'FTD2XX_NET_v1.1.0','FTD2XX_NET.dll');
+        FTD2XX_NET_dll_path = 'C:\FTD2XX_NET.dll'; % I need to explain this...
+        % When I use a fullpath for the DLL, typically path/to/API_VibraIRM/FTD2XX_NET_v1.1.0/FTD2XX_NET.dll
+        % then I have a stupide error "mscorlib" dependecy not found. Which is not true, it's loaded on MATALB startup.
+        % The only workaround I found is to place the DLL at the root : C:\
+        
         FTDI_Handle
         FT_STATUS
         IsOpen              = 0;
