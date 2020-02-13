@@ -7,7 +7,7 @@ classdef FTDI_VIBRA_IRM < handle
     
     properties % attributs
         
-        FTD2XX_NET_dll_path = fullfile(pwd,'FTD2XX_NET_v1.1.0','FTD2XX_NET.dll');
+        FTD2XX_NET_dll_path = fullfile( fileparts(mfilename('fullpath')) ,'FTD2XX_NET_v1.1.0','FTD2XX_NET.dll');
         FTDI_Handle
         FT_STATUS
         IsOpen              = 0;
