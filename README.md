@@ -4,6 +4,8 @@ The VibraIRM device uses a chip from FTDI for the communication with the compute
 
 # Install
 After cloning/downloading the repository, add the freshly created _API_VibraIRM_ directory into MATLAB path  
+**VERY IMPORTANT** : copy the DLL file `FTD2XX_NET_v1.1.0\FTD2XX_NET.dll` into the root directory of the system, such as  `C:\FTD2XX_NET.dll`  
+This weird step is ncessary because MATLAB is not able to load DLL otherwise, it breaks dependecies with other libs.
 
 # Exemple
 [API_VibraIRM/exemple_script.m](exemple_script.m) is straight forward.  
