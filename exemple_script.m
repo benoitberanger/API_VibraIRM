@@ -30,6 +30,27 @@ for valve = 1 : 4
 end
 
 
+%% Open gradually a valve
+
+valve_opening_000 =  40; % 40% is the highest value when the valve remains opened
+valve_opening_100 = 100;
+
+ramp_time = 5.0; % seconds
+step_time = 0.1; % seconds
+
+opening_vect = round( linspace(valve_opening_000, valve_opening_100, round(ramp_time/step_time)) );
+
+for valve = 1 : 4
+
+for idx = 1 : length(opening_vect)
+    vb.Start(valve, opening_vect(idx));
+    pause(step_time);
+end
+vb.Stop ( valve );
+
+end
+
+
 %% Cleanup
 
 % Close all valves

@@ -1,9 +1,15 @@
-function Start( self , channel )
+function Start( self , channel, value )
 
 self.AssertIsOpen ();
 self.AssertIsReady();
 
-msg = {'C0' , '00' , '02' , num2str(channel) , dec2hex(self.Value(channel),2) , 'C1'};
+if nargin < 3
+    value = self.Value(channel);
+else
+    self.Value(channel) = value;
+end
+
+msg = {'C0' , '00' , '02' , num2str(channel) , dec2hex(value,2) , 'C1'};
 
 if ~self.dummy
     
