@@ -212,7 +212,9 @@ else % Create the figure
             'Position',[e_VALVE(channel).x e_VALVE(channel).y e_VALVE(channel).w e_VALVE(channel).h],...
             'String','100',...
             'BackgroundColor',editBGcolor,...
-            'Visible','On');
+            'Visible','On',...
+            'Tag',e_VALVE(channel).tag,...
+            'Callback',@edit_VALVE_Callback);
         
     end
     
@@ -343,6 +345,24 @@ handles.FTDI.Start(channel);
 
 set(handles.(sprintf('pushbutton_ON_%d'  ,channel)),'BackgroundColor',[0 1 0]              );
 set(handles.(sprintf('pushbutton_OFF_%d' ,channel)),'BackgroundColor',handles.buttonBGcolor);
+
+guidata(hObject,handles); % store gui data
+end % function
+
+
+% -------------------------------------------------------------------------
+function edit_VALVE_Callback(hObject,~)
+handles = guidata(hObject); % load gui data
+
+if ~isfield(handles, 'FTDI')
+    warning('FTDI_VIBRA_IRM not opened')
+    return
+end
+
+valve_name = get(hObject,'tag');
+channel = str2double(valve_name(end));
+
+pushbutton_ON_Callback(handles.(sprintf('pushbutton_ON_%d',channel)))
 
 guidata(hObject,handles); % store gui data
 end % function
